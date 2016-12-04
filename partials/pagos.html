@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pagos</title>
+</head>
+<body>
+<div id='pagosform'>
+<form>
+		<ul>
+		<li style="display: inline;"><a href="#Estudiante">Estudiante</a></li>
+		<li style="display: inline;"><a href="#Docente">Docente</a></li>
+		<li style="display: inline;"><a href="#Curso">Curso</a></li>
+		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
+		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
+		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		</ul>
+		
+		<input hidden type="text" ng-model="uidpago" name="uidpago">
+		Digite matricula de estudiante: <input type="text" ng-model="matriculastudent" name="matstud">
+		<input id="date" name="date" ng-disabled="true">
+
+		<input type="button" value="Mostrar" ng-click="displayStudPago()">
+		{{msg}}
+</form>
+	<p ng-repeat="registrostud in data">Nombre de Estudiante: {{registrostud.namestudent}}</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Cursos</th>
+				<th>Estado Pago</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat = "registrostud in data">
+				<td>{{registrostud.nombrecurso}}</td>
+				<td>{{registrostud.estadopago}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	Seleccione estado de pago: <select name="pagostudent" ng-model="estadopago">  
+						  <option value="">Seleccione</option> 
+                          <option value="pagado" style="background:green">Recibido</option>
+                          <option value="no pagado" style="background:red">Inpago</option>
+        			</select>
+        			<button ng-click = "pagarStud()">Pagar Total de Cursos</button>
+</div> <!--Pagos Div-->
+
+<div class="space-16"></div>
+	<div align="right">
+       UID: {{uid}}
+       <br/>NOMBRE USUARIO: {{name}}
+       <br/>E-MAIL USUARIO: {{email}}
+       <br/>
+       <a ng-click="logout();">Salir</a>
+       </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+  document.getElementById('date').value = Date();
+</script>
+
+</html>

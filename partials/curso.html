@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Curso</title>
+</head>
+<body>
+<div id='cursoform'>
+<form>
+		<ul>
+		<li style="display: inline;"><a href="#Estudiante">Estudiante</a></li>
+		<li style="display: inline;"><a href="#Docente">Docente</a></li>
+		<li style="display: inline;"><a href="#Curso">Curso</a></li>
+		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
+		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
+		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		</ul>
+		
+		<input hidden type="text" ng-model="uidcurso" name="uidcurso" ng-disabled="objdoc.idcursodisable">
+		Nombre de curso: <input type="text" ng-model="nombrecurso" name="cur">
+		Descripcion: <input type="text", ng-model="descripcion" name="cur">
+		Rama: <input type="text", ng-model="rama" name="cur">
+		<input type="button" value="{{btnNameCur}}" ng-click="insertdatacur()">
+		<input type="button" value="Mostrar" ng-click="displayCur()">
+		{{msg}}
+</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>UIDCURSO</th>
+				<th>Nombre Curso</th>
+				<th>Descripcion</th>
+				<th>Rama</th><br>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat = "curso in data">
+				<td>{{curso.UIDCURSO}}</td>
+				<td>{{curso.nombrecurso}}</td>
+				<td>{{curso.descripcion}}</td>
+				<td>{{curso.rama}}</td>
+				<td><button ng-click = "deleteCur(curso.UIDCURSO);">Borrar</button></td>
+				<td><button ng-click = "editCur(curso.UIDCURSO, curso.nombrecurso, curso.descripcion, curso.rama);">Editar</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div> <!--Curso Div-->
+
+<div class="space-16"></div>
+	<div align="right">
+       UID: {{uid}}
+       <br/>NOMBRE USUARIO: {{name}}
+       <br/>E-MAIL USUARIO: {{email}}
+       <br/>
+       <a ng-click="logout();">Salir</a>
+       </div>
+</div>
+
+</body>
+</html>

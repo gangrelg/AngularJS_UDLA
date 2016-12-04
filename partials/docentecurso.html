@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docente en Curso</title>
+</head>
+<body>
+<div id='doccurform' ng-init="loadDrops()">
+<form>
+		<ul>
+		<li style="display: inline;"><a href="#Estudiante">Estudiante</a></li>
+		<li style="display: inline;"><a href="#Docente">Docente</a></li>
+		<li style="display: inline;"><a href="#Curso">Curso</a></li>
+		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
+		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
+		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		</ul>
+		
+		<input hidden type="text" ng-model="uiddocur" name="uiddocur">
+		<select name="doccur" ng-model="docente_uid">  
+                          <option value="">Seleccione Docente</option>  
+                          <option ng-repeat="docente in datadoc" value="{{docente.UID}}">{{docente.nombredocente}}</option>  
+        </select>
+
+        <select name="doccur" ng-model="curso_uid">  
+                          <option value="">Seleccione Curso</option>  
+                          <option ng-repeat="curso in datacur" value="{{curso.UIDCURSO}}">{{curso.nombrecurso}}</option>  
+        </select>
+		<input type="button" value="{{btnNameDocCur}}" ng-click="insertdatadoccur()">
+		<input type="button" value="Mostrar" ng-click="displayDocCur()">
+		{{msg}}
+</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>UIDRegistro</th>
+				<th>Docente</th>
+				<th>Curso</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat = "registrodoc in data">
+				<td>{{registrodoc.uiddocur}}</td>
+				<td>{{registrodoc.nombredocente}}</td>
+				<td>{{registrodoc.nombrecurso}}</td>
+				<td><button ng-click = "deleteDocCur(registrodoc.uiddocur);">Borrar</button></td>
+				<td><button ng-click = "editDocCur(registrodoc.uiddocur, registrodoc.docente_uid, registrodoc.curso_uidcurso);">Editar</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div> <!--Registro Docente a Curso Div-->
+
+<div class="space-16"></div>
+	<div align="right">
+       UID: {{uid}}
+       <br/>NOMBRE USUARIO: {{name}}
+       <br/>E-MAIL USUARIO: {{email}}
+       <br/>
+       <a ng-click="logout();">Salir</a>
+       </div>
+</div>
+
+</body>
+</html>

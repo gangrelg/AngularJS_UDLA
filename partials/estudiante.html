@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Estudiante</title>
+</head>
+<body>
+
+<div id='studform'>
+	<form>
+		<ul>
+		<li style="display: inline;"><a href="#Estudiante">Estudiante</a></li>
+		<li style="display: inline;"><a href="#Docente">Docente</a></li>
+		<li style="display: inline;"><a href="#Curso">Curso</a></li>
+		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
+		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
+		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		</ul>
+		
+		<input hidden type="text" ng-model="id" name="id" ng-disabled="obj.idisable">
+		Nombre Estudiante: <input type="text" ng-model="namestudent" name="id">
+		Matricula: <input type="text", ng-model="matriculastudent" name="id" ng-disabled="objmat.matriculadisable">
+		Email: <input type="text", ng-model="emailstudent" name="id">
+		<input type="button" value="{{btnName}}" ng-click="insertdata()">
+		<input type="button" value="Mostrar" ng-click="displayStud()">
+		{{msg}}
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Matricula</th>
+				<th>Email</th><br>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat = "student in data">
+				<td>{{student.id}}</td>
+				<td>{{student.namestudent}}</td>
+				<td>{{student.matriculastudent}}</td>
+				<td>{{student.emailstudent}}</td>
+				<td><button ng-click = "deleteStud(student.id);">Borrar</button></td>
+				<td><button ng-click = "editStud(student.id, student.namestudent, student.matriculastudent, student.emailstudent);">Editar</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div><!--Stduent Div-->
+
+<div class="space-16"></div>
+	<div align="right">
+       UID: {{uid}}
+       <br/>NOMBRE USUARIO: {{name}}
+       <br/>E-MAIL USUARIO: {{email}}
+       <br/>
+       <a ng-click="logout();">Salir</a>
+       </div>
+</div>
+
+</body>
+</html>
