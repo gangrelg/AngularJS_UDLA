@@ -13,6 +13,7 @@
 		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
 		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
 		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		<li style="display: inline;"><a href="#Reporte Inpagos">Reporte Inpagos</a></li>
 		</ul>
 		
 		<input hidden type="text" ng-model="uidpago" name="uidpago">
@@ -22,24 +23,25 @@
 		<input type="button" value="Mostrar" ng-click="displayStudPago()">
 		{{msg}}
 </form>
-	<p ng-repeat="registrostud in data">Nombre de Estudiante: {{registrostud.namestudent}}</p>
+<br>
+	<p ng-repeat="registrostud in data|limitTo:1">Nombre de Estudiante: {{registrostud.namestudent}}</p>
 	<table>
 		<thead>
 			<tr>
 				<th>Cursos</th>
-				<th>Estado Pago</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr ng-repeat = "registrostud in data">
 				<td>{{registrostud.nombrecurso}}</td>
-				<td>{{registrostud.estadopago}}</td>
 			</tr>
 		</tbody>
 	</table>
 	<br>
-	Seleccione estado de pago: <select name="pagostudent" ng-model="estadopago">  
+	<p ng-model="estado" ng-repeat="registrostud in data|limitTo:1">Estado: {{registrostud.estadopago}}</p>
+
+	Seleccione estado de pago: <select name="pagostudent" ng-model="estadopago" ng-disabled="objpago.pagodisabled">  
 						  <option value="">Seleccione</option> 
                           <option value="pagado" style="background:green">Recibido</option>
                           <option value="no pagado" style="background:red">Inpago</option>

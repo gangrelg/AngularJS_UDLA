@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Docente</title>
+	<title>Reporte Inpagos</title>
 </head>
 <body>
-<div id='docform'>
+<div id='inpagoform'>
 <form>
 		<ul>
 		<li style="display: inline;"><a href="#Estudiante">Estudiante</a></li>
@@ -16,33 +16,25 @@
 		<li style="display: inline;"><a href="#Reporte Inpagos">Reporte Inpagos</a></li>
 		</ul>
 		
-		<input hidden type="text" ng-model="uid" name="uid" ng-disabled="objdoc.iddocdisable">
-		Nombre Docente: <input type="text" ng-model="nombredocente" name="doc">
-		Cedula: <input type="text", ng-model="cedula" name="doc" ng-disabled="ced.cedula">
-		Email: <input type="text", ng-model="emaildocente" name="doc">
-		<input type="button" value="{{btnNameDoc}}" ng-click="insertdatadoc()">
-		<input type="button" value="Mostrar" ng-click="displayDoc()">
-		{{msg}}
+		<input type="button" value="Generar Reporte" ng-click="displayInpagos()">
 </form>
 
 	<table>
 		<thead>
 			<tr>
-				<th>UID</th>
+				<th>UID Estudiante</th>
 				<th>Nombre</th>
-				<th>Cedula</th>
+				<th>Estado</th>
 				<th>Email</th><br>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr ng-repeat = "docente in data">
-				<td>{{docente.UID}}</td>
-				<td>{{docente.nombredocente}}</td>
-				<td>{{docente.cedula}}</td>
-				<td>{{docente.emaildocente}}</td>
-				<td><button ng-click = "deleteDoc(docente.UID);">Borrar</button></td>
-				<td><button ng-click = "editDoc(docente.UID, docente.nombredocente, docente.cedula, docente.emaildocente);">Editar</button></td>
+			<tr ng-repeat = "inpagos in datainpago">
+				<td><p>{{inpagos.id}}</p></td>
+				<td><p>{{inpagos.namestudent}}&nbsp;</p></td>
+				<td><p style="color: red">{{inpagos.estadopago}}&nbsp;</p></td>
+				<td><p>{{inpagos.emailstudent}}</p></td>
 			</tr>
 		</tbody>
 	</table>
@@ -57,6 +49,5 @@
        <a ng-click="logout();">Salir</a>
        </div>
 </div>
-
 </body>
 </html>

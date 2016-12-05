@@ -3,6 +3,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.obj = {'idisable':false};
     $scope.ced = {'cedula':false}
     $scope.objmat = {'matriculadisable':false}
+    $scope.objpago = {'pagodisabled':false}
     $scope.btnName = "Insertar";
     $scope.btnNameDoc = "Insertar";
     $scope.btnNameCur = "Insertar";
@@ -48,10 +49,18 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     }
 
     //Carga Curso
-    $scope.loadCur = function(){  
+    $scope.loadCur = function(){
            $http.get("partials/load_curso.php")  
            .success(function(data){  
                 $scope.datacur = data;  
+           })  
+    }
+
+    //Carga Docente para Curso Estudiante
+    $scope.changeDoc = function(){  
+           $http.post("partials/getestdoc.php", {'curso_uid':$scope.curso_uid})  
+           .success(function(data){  
+                $scope.dataget = data;
            })  
     }
 
@@ -93,7 +102,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     //Metodo Insert Estudiante Cursp
     $scope.insertdatastudcur = function(){
-        $http.post("partials/insertstudcur.php", {'uidstudcur':$scope.uidstudcur, 'student_id':$scope.student_id, 'curso_uid':$scope.curso_uid,'btnNameStudcur':$scope.btnNameStudCur})
+        $http.post("partials/insertstudcur.php", {'uidstudcur':$scope.uidstudcur, 'student_id':$scope.student_id, 'curso_uid':$scope.curso_uid, 'docente_uid':$scope.docente_uid,'btnNameStudcur':$scope.btnNameStudCur})
         .success(function(){
             $scope.msg = "Datos Insertados";
             $scope.displayStudCur();
@@ -113,6 +122,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         $http.post("partials/selectpago.php", {'matriculastudent':$scope.matriculastudent})
         .success(function(data){
             $scope.data = data
+        })
+    }
+
+    //Metodo Select Inpagos
+    $scope.displayInpagos = function(){
+        $http.post("partials/selectinpagos.php")
+        .success(function(data){
+            $scope.datainpago = data
         })
     }
 
@@ -150,7 +167,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 
     //Metodo Select Estudiante en Curso
     $scope.displayStudCur = function(){
-        $http.get("partials/selectstudcur.php")
+        $http.post("partials/selectstudcur.php", {'matriculastudent':$scope.matriculastudent})
         .success(function(data){
             $scope.data = data
         })

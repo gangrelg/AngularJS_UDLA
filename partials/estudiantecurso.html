@@ -13,20 +13,28 @@
 		<li style="display: inline;"><a href="#DocenteCur">Docente en Curso</a></li>
 		<li style="display: inline;"><a href="#EstudianteCur">Estudiante en Curso</a></li>
 		<li style="display: inline;"><a href="#Pagos">Pagos</a></li>
+		<li style="display: inline;"><a href="#Reporte Inpagos">Reporte Inpagos</a></li>
 		</ul>
 		
 		<input hidden type="text" ng-model="uidstudcur" name="uidstudcur">
-		<select name="studcur" ng-model="student_id">  
+
+		<select name="studcur" ng-model="student_id">
                           <option value="">Seleccione Estudiante</option>  
                           <option ng-repeat="student in datastud" value="{{student.id}}">{{student.namestudent}}</option>  
         </select>
 
-        <select name="studcur" ng-model="curso_uid">  
+        <select name="studcur" ng-model="curso_uid" ng-change="changeDoc()">  
                           <option value="">Seleccione Curso</option>  
-                          <option ng-repeat="curso in datacur" value="{{curso.UIDCURSO}}">{{curso.nombrecurso}}</option>  
+                          <option ng-repeat="curso in datacur" value="{{curso.nombrecurso}}">{{curso.nombrecurso}}</option>  
+        </select>
+
+        <select name="studcur" ng-model="docente_uid">  
+                          <option value="">Seleccione Docente</option>  
+                          <option ng-repeat="docente in dataget" value="{{docente.UID}}">{{docente.nombredocente}}</option>  
         </select>
 		<input type="button" value="{{btnNameStudCur}}" ng-click="insertdatastudcur()">
 		<input type="button" value="Mostrar" ng-click="displayStudCur()">
+		<input type="text" ng-model="matriculastudent" placeholder="ingrese matricula">
 		{{msg}}
 </form>
 
@@ -36,6 +44,7 @@
 				<th>UIDRegistro</th>
 				<th>Estudiante</th>
 				<th>Curso</th>
+				<th>Docente</th>
 			</tr>
 		</thead>
 
@@ -44,6 +53,7 @@
 				<td>{{registrostud.uidstudcur}}</td>
 				<td>{{registrostud.namestudent}}</td>
 				<td>{{registrostud.nombrecurso}}</td>
+				<td>{{registrostud.nombredocente}}</td>
 				<td><button ng-click = "deleteStudCur(registrostud.uidstudcur);">Borrar</button></td>
 				<td><button ng-click = "editStudCur(registrostud.uidstudcur, registrostud.student_uid, registrostud.curso_uidcurso);">Editar</button></td>
 			</tr>

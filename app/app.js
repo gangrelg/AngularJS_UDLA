@@ -48,6 +48,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/pagos.html',
                 controller: 'authCtrl'
             })
+            .when('/Reporte Inpagos', {
+                title: 'Reporte Inpagos',
+                templateUrl: 'partials/reportinpagos.html',
+                controller: 'authCtrl'
+            })
             .when('/', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',
