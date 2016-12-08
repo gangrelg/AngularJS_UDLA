@@ -112,7 +112,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     //Metodo Insert Estudiante Pago
     $scope.pagarStud = function(){
         $http.post("partials/insertpago.php", {'estadopago':$scope.estadopago, 'matriculastudent':$scope.matriculastudent})
-        .success(function(){
+        .success(function(mess){
             $scope.msg = "Datos Insertados";
         })
     }

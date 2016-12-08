@@ -2,7 +2,6 @@
 include "connectdb.php";
 
 $data = json_decode(file_get_contents("php://input"));
-
 //Conexion a base de datos utilizando real_escape_string
 //Dato importante
 $btnNameStudCur = $dbhandle -> real_escape_string($data -> btnNameStudcur);

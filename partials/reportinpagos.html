@@ -4,6 +4,7 @@
 	<title>Reporte Inpagos</title>
 </head>
 <body>
+
 <div id='inpagoform'>
 <form>
 		<ul>
@@ -17,8 +18,12 @@
 		</ul>
 		
 		<input type="button" value="Generar Reporte" ng-click="displayInpagos()">
+		<button onclick="myFunction('printable')">Imprimir</button>
 </form>
 
+<div style="padding: 0 0 0 200px" id="printable">
+<br>
+<img style="width: 569px; height: 105px" src="assets/report_logo.png">
 	<table>
 		<thead>
 			<tr>
@@ -38,6 +43,7 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
 </div> <!--Docente Div-->
 
 <div class="space-16"></div>
@@ -49,5 +55,19 @@
        <a ng-click="logout();">Salir</a>
        </div>
 </div>
+
+<script>
+function myFunction(printable) {
+    var printContents = document.getElementById(printable).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+
 </body>
 </html>
